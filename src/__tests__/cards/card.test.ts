@@ -1,4 +1,4 @@
-import { Rank, Suit, Card } from "../index";
+import { Rank, Suit, Card } from "../../index";
 
 describe("new card", () => {
   test("ace of spades", () => {
@@ -11,4 +11,4 @@ describe("new card", () => {
   });
 });
 
-//TODO: make card compare tests
+// TODO: make card compare tests

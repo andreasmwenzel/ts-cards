@@ -1,4 +1,4 @@
-import { Card, Deck } from "../index";;
+import { Card, Deck } from "../../index";;
 
 describe("Deck", () => {
   const deck = new Deck();
