@@ -19,8 +19,11 @@
     "type": "git",
     "url": "git+https://github.com/andreasmwenzel/ts-cards.git"
   },
-  "keywords": ["Cards", "Typescript"],
-   "author": "Andreas Wenzel",
+  "keywords": [
+    "Cards",
+    "Typescript"
+  ],
+  "author": "Andreas Wenzel",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/andreasmwenzel/ts-cards/issues"
