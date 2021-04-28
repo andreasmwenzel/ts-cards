@@ -1,4 +1,4 @@
-import { Card, Trick, diamonds, spades, clubs, ace, queen, two, standardRankValues, Suit } from '../../index';
+import { Card, Trick, diamonds, spades, clubs, ace, queen, two, standardCardCompare, Suit } from '../../index';
 
 const aceOfSpades = new Card(spades, ace);
 const queenOfDiamonds1 = new Card(diamonds, queen);
@@ -8,28 +8,9 @@ const queenOfDiamonds2 = new Card(diamonds, queen);
 let trick: Trick;
 let trickWihTrump : Trick;
 
-const compareCards = (a: Card, b: Card, leadSuit: Suit | undefined, trump : Suit | undefined): number => {
-  const bRank: number | undefined = standardRankValues.get(b.rank);
-  const aRank: number | undefined = standardRankValues.get(a.rank);
-  if (a.suit === b.suit) {
-    return (bRank ? bRank : 0) - (aRank ? aRank : 0);
-  } else {
-    if(b.suit === trump){
-      return 1;
-    } else if(a.suit === trump){
-      return -1;
-    }
-    else if (b.suit === leadSuit) {
-      return 1;
-    } else {
-      return -1;
-    }
-  }
-};
-
 describe('trick without trump', () => {
   test('create a new Trick', () => {
-    trick = new Trick(aceOfSpades, compareCards);
+    trick = new Trick(aceOfSpades, standardCardCompare);
     expect(trick.length).toBe(1);
     expect(trick.winner).toBe(aceOfSpades);
     expect(trick.suit).toBe(spades);
@@ -45,7 +26,7 @@ describe('trick without trump', () => {
 
 describe('trick with trump', () => {
   test('create a new Trick', () => {
-    trickWihTrump = new Trick(queenOfDiamonds1, compareCards, clubs);
+    trickWihTrump = new Trick(queenOfDiamonds1, standardCardCompare, clubs);
     expect(trickWihTrump.length).toBe(1);
     expect(trickWihTrump.winner).toBe(queenOfDiamonds1);
     expect(trickWihTrump.suit).toBe(queenOfDiamonds1.suit);

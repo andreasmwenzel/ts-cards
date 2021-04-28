@@ -4,5 +4,5 @@ export { two, three, four, five, six, seven, eight, nine, ten, jack, queen, king
 export { Suit } from './suit';
 export { clubs, hearts, diamonds, spades } from './suits';
 export { Deck } from './deck';
-export { StandardDeck, standardRankValues, PinochleDeck, pinochleRankValues } from './decks';
+export { StandardDeck, standardCardCompare, PinochleDeck, pinochleCardCompare } from './decks';
 export { Trick } from './trick';
