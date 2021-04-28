@@ -1,46 +1,63 @@
-import {Card, Trick, defaultRankValue} from "../../index";;
+import { Card, Trick, diamonds, spades, clubs, ace, queen, two, standardRankValues, Suit } from '../../index';
 
-const card = new Card("spades", "A");
-const card2 = new Card("diamonds", "Q");
-const card3 = new Card("clubs", "2");
-const card4 = new Card("diamonds", "Q");
+const aceOfSpades = new Card(spades, ace);
+const queenOfDiamonds1 = new Card(diamonds, queen);
+const twoOfClubs = new Card(clubs, two);
+const queenOfDiamonds2 = new Card(diamonds, queen);
 
-const map = new Map<Card, number>(); // keep track of the two queen of diamonds
-map.set(card2,2);
-map.set(card4,4);
+let trick: Trick;
+let trickWihTrump : Trick;
 
-let trick:Trick;
-describe("trick without trump", ()=>{
-  test("create a new Trick", () => {
-    trick = new Trick(card, defaultRankValue);
+const compareCards = (a: Card, b: Card, leadSuit: Suit | undefined, trump : Suit | undefined): number => {
+  const bRank: number | undefined = standardRankValues.get(b.rank);
+  const aRank: number | undefined = standardRankValues.get(a.rank);
+  if (a.suit === b.suit) {
+    return (bRank ? bRank : 0) - (aRank ? aRank : 0);
+  } else {
+    if(b.suit === trump){
+      return 1;
+    } else if(a.suit === trump){
+      return -1;
+    }
+    else if (b.suit === leadSuit) {
+      return 1;
+    } else {
+      return -1;
+    }
+  }
+};
+
+describe('trick without trump', () => {
+  test('create a new Trick', () => {
+    trick = new Trick(aceOfSpades, compareCards);
     expect(trick.length).toBe(1);
-    expect(trick.winner).toBe(card);
-    expect(trick.suit).toBe("spades");
+    expect(trick.winner).toBe(aceOfSpades);
+    expect(trick.suit).toBe(spades);
   });
 
-  test("add to existing trick", ()=>{
-    trick.addCard(card2);
+  test('add to existing trick', () => {
+    trick.addCard(queenOfDiamonds1);
     expect(trick.length).toBe(2);
-    expect(trick.winner).toBe(card);
-    expect(trick.suit).toBe("spades");
-  })
-})
+    expect(trick.winner).toBe(aceOfSpades);
+    expect(trick.suit).toBe(spades);
+  });
+});
 
-describe("trick with trump", ()=>{
-  test("create a new Trick", () => {
-    trick = new Trick(card2, defaultRankValue,"clubs");
-    expect(trick.length).toBe(1);
-    expect(trick.winner).toBe(card2);
-    expect(trick.suit).toBe(card2.suit);
+describe('trick with trump', () => {
+  test('create a new Trick', () => {
+    trickWihTrump = new Trick(queenOfDiamonds1, compareCards, clubs);
+    expect(trickWihTrump.length).toBe(1);
+    expect(trickWihTrump.winner).toBe(queenOfDiamonds1);
+    expect(trickWihTrump.suit).toBe(queenOfDiamonds1.suit);
   });
 
-  test("add to existing trick", ()=>{
-    trick.addCard(card);
-    trick.addCard(card4)
-    expect(map.get(trick.winner)).toEqual(2); // the first queen of diamonds is the current winning card
-    trick.addCard(card3);
-    expect(trick.length).toBe(4);
-    expect(trick.winner).toBe(card3); // the 2 of clubs wins as trump
-    expect(trick.suit).toBe(card2.suit); // but the trick "suit" is still diamonds
-  })
-})
+  test('add to existing trick', () => {
+    trickWihTrump.addCard(aceOfSpades);
+    trickWihTrump.addCard(queenOfDiamonds2);
+    expect(trickWihTrump.winner).toStrictEqual(queenOfDiamonds1); // the first queen of diamonds is the current winning card
+    trickWihTrump.addCard(twoOfClubs);
+    expect(trickWihTrump.length).toBe(4);
+    expect(trickWihTrump.winner).toBe(twoOfClubs); // the 2 of clubs wins as trump
+    expect(trickWihTrump.suit).toBe(queenOfDiamonds1.suit); // but the trick "suit" is still diamonds
+  });
+});

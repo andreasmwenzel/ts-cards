@@ -1,4 +1,8 @@
-export { Card, Rank, Suit, RankValues, SuitValues, compareCards } from './card';
+export { Card } from './card';
+export { Rank } from './rank';
+export { two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace } from './ranks';
+export { Suit } from './suit';
+export { clubs, hearts, diamonds, spades } from './suits';
 export { Deck } from './deck';
-export { StandardDeck, defaultRankValue, PinochleDeck, pinochleRankValues } from './decks';
+export { StandardDeck, standardRankValues, PinochleDeck, pinochleRankValues } from './decks';
 export { Trick } from './trick';

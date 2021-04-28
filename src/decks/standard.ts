@@ -1,5 +1,8 @@
 import { Deck } from '../deck';
-import { Card, Rank, Suit, RankValues } from '../card';
+import { Card } from '../card';
+import { two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace } from '../ranks';
+import { spades, diamonds, clubs, hearts } from '../suits';
+import { Rank } from '../rank';
 
 /**
  * @class PinochelDeck
@@ -11,8 +14,8 @@ export class StandardDeck extends Deck {
   }
 }
 
-const suits: Suit[] = ['spades', 'hearts', 'diamonds', 'clubs'];
-const ranks: Rank[] = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+const suits = [spades, diamonds, clubs, hearts];
+const ranks = [two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace];
 
 const generateDeck = () => {
   const cards: Card[] = [];
@@ -26,18 +29,17 @@ const generateDeck = () => {
   return cards;
 };
 
-export let defaultRankValue: RankValues = {
-  '2': 2,
-  '3': 3,
-  '4': 4,
-  '5': 5,
-  '6': 6,
-  '7': 7,
-  '8': 8,
-  '9': 9,
-  '10': 3,
-  J: 11,
-  Q: 12,
-  K: 13,
-  A: 14,
-};
+export const standardRankValues = new Map<Rank, number>();
+standardRankValues.set(two, 2);
+standardRankValues.set(three, 3);
+standardRankValues.set(four, 4);
+standardRankValues.set(five, 5);
+standardRankValues.set(six, 6);
+standardRankValues.set(seven, 7);
+standardRankValues.set(eight, 8);
+standardRankValues.set(nine, 9);
+standardRankValues.set(ten, 10);
+standardRankValues.set(jack, 11);
+standardRankValues.set(queen, 12);
+standardRankValues.set(king, 13);
+standardRankValues.set(ace, 14);

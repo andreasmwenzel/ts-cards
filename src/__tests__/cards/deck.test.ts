@@ -1,8 +1,8 @@
-import { Card, Deck } from "../../index";;
+import { Deck } from '../../index';
 
-describe("Deck", () => {
+describe('Deck', () => {
   const deck = new Deck();
-  test("fresh deck", () => {
+  test('fresh deck', () => {
     expect(deck.totalLength).toBe(0);
   });
 });

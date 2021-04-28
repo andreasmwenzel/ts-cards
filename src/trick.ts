@@ -1,33 +1,24 @@
-import { Card, compareCards, Suit, SuitValues, RankValues } from './card';
+import { Card } from './card';
+import { Suit } from './suit';
 
 export class Trick {
-  private leadSuit: Suit = 'clubs';
+  private leadSuit;
+  private trumpSuit;
   public cards: Card[] = [];
-  private rankValues;
-  private suitValues: SuitValues = {
-    clubs: 1,
-    hearts: 1,
-    diamonds: 1,
-    spades: 1,
-  };
+  private compareCards: (a: Card, b: Card, ledSuit?: Suit, trump?: Suit) => number;
 
-  constructor(card: Card, rankValues: RankValues, trump: Suit | null = null) {
+  constructor(card: Card, cardCompare: (a: Card, b: Card, leadSuit?: Suit, trump?: Suit) => number, trump?: Suit) {
     this.leadSuit = card.suit;
-
-    this.rankValues = rankValues;
-    this.suitValues[card.suit] += 10;
-    if (trump) {
-      this.suitValues[trump] += 100;
-    }
-
+    this.trumpSuit = trump;
+    this.compareCards = cardCompare;
     this.cards.push(card);
   }
 
   addCard(card: Card) {
     this.cards.push(card);
-    this.cards.sort((a, b) => {
-      return compareCards(a, b, this.rankValues, this.suitValues) * -1;
-    }); // sort high to low
+    this.cards.sort((a: Card, b: Card) => {
+      return this.compareCards(a, b, this.leadSuit, this.trumpSuit);
+    });
   }
 
   public get winner() {

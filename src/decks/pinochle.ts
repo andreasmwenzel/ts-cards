@@ -1,5 +1,7 @@
 import { Deck } from '../deck';
-import { Card, Rank, Suit, RankValues } from '../card';
+import { Card } from '../card';
+import { nine, ten, jack, queen, king, ace } from '../ranks';
+import { spades, diamonds, clubs, hearts } from '../suits';
 
 /**
  * @class PinochelDeck
@@ -11,8 +13,8 @@ export class PinochleDeck extends Deck {
   }
 }
 
-const suits: Suit[] = ['spades', 'hearts', 'diamonds', 'clubs'];
-const ranks: Rank[] = ['9', 'J', 'Q', 'K', '10', 'A'];
+const suits = [spades, diamonds, clubs, hearts];
+const ranks = [nine, jack, queen, king, ten, ace];
 
 const generateDeck = () => {
   const cards: Card[] = [];
@@ -27,18 +29,11 @@ const generateDeck = () => {
   return cards;
 };
 
-export let pinochleRankValues: RankValues = {
-  '2': 0,
-  '3': 0,
-  '4': 0,
-  '5': 0,
-  '6': 0,
-  '7': 0,
-  '8': 0,
-  '9': 9,
-  J: 10,
-  Q: 11,
-  K: 12,
-  '10': 13,
-  A: 14,
+export const pinochleRankValues = {
+  nine: 9,
+  jack: 10,
+  queen: 11,
+  king: 12,
+  ten: 13,
+  ace: 14,
 };
