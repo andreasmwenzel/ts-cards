@@ -30,7 +30,7 @@ const generateDeck = () => {
   return cards;
 };
 
-const standardRankValues = new Map<Rank, number>();
+export const standardRankValues = new Map<Rank, number>();
 standardRankValues.set(two, 2);
 standardRankValues.set(three, 3);
 standardRankValues.set(four, 4);
@@ -44,7 +44,6 @@ standardRankValues.set(jack, 11);
 standardRankValues.set(queen, 12);
 standardRankValues.set(king, 13);
 standardRankValues.set(ace, 14);
-
 
 export const standardCardCompare = (a: Card, b: Card, leadSuit: Suit | undefined, trump : Suit | undefined): number => {
   const bRank: number | undefined = standardRankValues.get(b.rank);
