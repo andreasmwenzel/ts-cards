@@ -23,7 +23,7 @@ export class Trick {
     });
   }
 
-  public get cards(){
+  public get cards() {
     return this._cards;
   }
   public get winningCard() {

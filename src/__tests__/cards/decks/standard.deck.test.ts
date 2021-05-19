@@ -1,4 +1,4 @@
-import { StandardDeck , spades, two} from '../../../index';
+import { StandardDeck, spades, two } from '../../../index';
 describe('Pinochle Deck', () => {
   const deck = new StandardDeck();
   test('fresh deck', () => {

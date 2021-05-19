@@ -2,8 +2,8 @@ import { Deck } from '../deck';
 import { Card } from '../card';
 import { nine, ten, jack, queen, king, ace } from '../ranks';
 import { spades, diamonds, clubs, hearts } from '../suits';
-import { Suit } from "../suit"
-import { Rank } from "../rank"
+import { Suit } from '../suit';
+import { Rank } from '../rank';
 
 /**
  * @class PinochelDeck
@@ -39,18 +39,17 @@ pinochleRankValues.set(king, 12);
 pinochleRankValues.set(ten, 13);
 pinochleRankValues.set(ace, 14);
 
-export const pinochleCardCompare = (a: Card, b: Card, leadSuit: Suit | undefined, trump : Suit | undefined): number => {
+export const pinochleCardCompare = (a: Card, b: Card, leadSuit: Suit | undefined, trump: Suit | undefined): number => {
   const bRank: number | undefined = pinochleRankValues.get(b.rank);
   const aRank: number | undefined = pinochleRankValues.get(a.rank);
   if (a.suit === b.suit) {
     return (bRank ? bRank : 0) - (aRank ? aRank : 0);
   } else {
-    if(b.suit === trump){
+    if (b.suit === trump) {
       return 1;
-    } else if(a.suit === trump){
+    } else if (a.suit === trump) {
       return -1;
-    }
-    else if (b.suit === leadSuit) {
+    } else if (b.suit === leadSuit) {
       return 1;
     } else {
       return -1;

@@ -8,9 +8,9 @@ describe('Deck', () => {
   });
 });
 
-describe('rank values', ()=>{
-  test('2 smaller than 3', ()=>{
+describe('rank values', () => {
+  test('2 smaller than 3', () => {
     expect(standardRankValues.get(three)).toBe(3);
     expect(standardRankValues.get(two)).toBe(2);
-  })
-})
+  });
+});

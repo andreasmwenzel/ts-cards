@@ -45,18 +45,17 @@ standardRankValues.set(queen, 12);
 standardRankValues.set(king, 13);
 standardRankValues.set(ace, 14);
 
-export const standardCardCompare = (a: Card, b: Card, leadSuit: Suit | undefined, trump : Suit | undefined): number => {
+export const standardCardCompare = (a: Card, b: Card, leadSuit: Suit | undefined, trump: Suit | undefined): number => {
   const bRank: number | undefined = standardRankValues.get(b.rank);
   const aRank: number | undefined = standardRankValues.get(a.rank);
   if (a.suit === b.suit) {
     return (bRank ? bRank : 0) - (aRank ? aRank : 0);
   } else {
-    if(b.suit === trump){
+    if (b.suit === trump) {
       return 1;
-    } else if(a.suit === trump){
+    } else if (a.suit === trump) {
       return -1;
-    }
-    else if (b.suit === leadSuit) {
+    } else if (b.suit === leadSuit) {
       return 1;
     } else {
       return -1;

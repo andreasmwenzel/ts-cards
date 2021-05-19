@@ -6,7 +6,7 @@ const twoOfClubs = new Card(clubs, two);
 const queenOfDiamonds2 = new Card(diamonds, queen);
 
 let trick: Trick;
-let trickWihTrump : Trick;
+let trickWihTrump: Trick;
 
 describe('trick without trump', () => {
   test('create a new Trick', () => {
