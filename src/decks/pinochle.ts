@@ -31,7 +31,7 @@ const generateDeck = () => {
   return cards;
 };
 
-const pinochleRankValues = new Map<Rank, number>();
+export const pinochleRankValues = new Map<Rank, number>();
 pinochleRankValues.set(nine, 9);
 pinochleRankValues.set(jack, 10);
 pinochleRankValues.set(queen, 11);

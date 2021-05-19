@@ -1,2 +1,2 @@
-export { StandardDeck, standardCardCompare} from './standard';
-export { PinochleDeck, pinochleCardCompare } from './pinochle';
+export { StandardDeck, standardCardCompare, standardRankValues} from './standard';
+export { PinochleDeck, pinochleCardCompare, pinochleRankValues } from './pinochle';
